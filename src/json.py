@@ -1,4 +1,5 @@
 import json
+import sys
 
 class Config:
   def __init__(self, json_string):
@@ -12,3 +13,6 @@ class Config:
 def start(string):
   config = Config(string)
   print(config.data["bias"])
+
+if __name__ == "__main__":
+  start(sys.argv[1])
