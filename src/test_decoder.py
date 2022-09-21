@@ -1,10 +1,12 @@
 import decoder
 import numpy as np
 import pytest
+from pathlib import Path
 
 
-def decodesCorrectly():
-    data = decoder.decodeAFM('/home/private/repos/afm-reader/sample/sample.nid')
+def testDecoding():
+    testFilePath = Path(__file__).resolve().parents[1].joinpath('sample/sample.nid')
+    data = decoder.decodeAFM(testFilePath)
     assert len(data) == 32
 
 def testOptimistic():

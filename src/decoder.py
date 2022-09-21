@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 
+
 class Config:
   dirpath = "/home/private/repos/afm-reader/"
   resultPath = "/home/private/repos/afm-reader/results/"
@@ -40,10 +41,12 @@ def getDataFromDecoded(decoded, dataConfig: dict) -> dict:
     data[key] = arr  
   return data
 
+# todo tests
 def saveFile(name: string, data: dict, dataName: dict):
   savePath = config.resultPath+name.split('.')[0]+'-'+dataName+'.csv'
   np.savetxt(savePath, data, fmt='%s', delimiter=",")
 
+#todo tests
 def plot(name, x, y, nameX, unitX, nameY, unitY, xlim = None, ylim = None):
   for i in range(len(y)):
       plt.plot(x[i], y[i])
@@ -82,3 +85,14 @@ if __name__ == "__main__":
         raise NameError('!!! Config error !!!')
 
 
+config = {
+    "sourcePath": "/mydrive/afm",
+    "outputPath": "/mydrive/afm/results",
+    "data": {
+        "bias": [["Spec", "Backward", "Sample_Bias"], ["Spec", "Forward", "Sample_Bias"]],
+        "amplitude": [["Spec", "Backward", "2nd Lock-In Amplitude"], ["Spec", "Forward", "2nd Lock-In Amplitude"]],
+        "phase": [["Spec", "Backward", "2nd Lock-In Phase"], ["Spec", "Forward", "2nd Lock-In Phase"]],
+    },
+    "files": ["bias", "amplitude", "phase"],
+    "plots": [["bias", "amplitude"], ["bias", "phase"]]
+    }
