@@ -1,18 +1,14 @@
 import json
-import sys
 
 class Config:
-  def __init__(self, json_string):
-    config = json.loads(json_string)
+  def __init__(self, config_file):
+    file = open(config_file)
+    config = json.load(file)
     self.sourcePath = config["sourcePath"]
     self.outputPath = config["outputPath"]
     self.data = config["data"]
     self.files = config["files"]
     self.plots = config["plots"]
 
-def start(string):
-  config = Config(string)
-  print(config.data["bias"])
-
-if __name__ == "__main__":
-  start(sys.argv[1])
+#create config with checks
+#cehck if folder path ends with /

@@ -1,0 +1,23 @@
+{
+  "sourcePath": "/home/private/repos/afm-reader/sample",
+  "outputPath": "/home/private/repos/afm-reader/results",
+  "data": {
+    "bias": [
+      ["Spec", "Backward", "Sample_Bias"],
+      ["Spec", "Forward", "Sample_Bias"]
+    ],
+    "amplitude": [
+      ["Spec", "Backward", "2nd Lock-In Amplitude"],
+      ["Spec", "Forward", "2nd Lock-In Amplitude"]
+    ],
+    "phase": [
+      ["Spec", "Backward", "2nd Lock-In Phase"],
+      ["Spec", "Forward", "2nd Lock-In Phase"]
+    ]
+  },
+  "files": ["bias", "amplitude", "phase"],
+  "plots": [
+    ["bias", "-", "amplitude", "pN"],
+    ["bias", "-", "phase", "deg"]
+  ]
+}
