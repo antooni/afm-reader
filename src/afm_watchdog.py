@@ -18,7 +18,7 @@ def created(event, config: Config):
 
 
 def start_watchdog(config: Config):
-
+    #get only .nid
     patterns = ["*"]
     ignore_patterns = None
     ignore_directories = True

@@ -3,14 +3,6 @@ import decoder
 import plotter
 from pathlib import Path
 
-def get_output_prefix(file_path, output_path):
-    file_name = file_path.split('/')[-1].split('.')[0]
-    return output_path + '/' + file_name + '/' + file_name
-
-def create_output_path(file_path, output_path):
-    file_name = file_path.split('/')[-1].split('.')[0]
-    Path(output_path + '/' + file_name).mkdir(parents=True, exist_ok=True)
-
 def start_single_file(config: Config, file_path):
     data = decoder.decode(file_path, config)
 
@@ -19,7 +11,7 @@ def start_single_file(config: Config, file_path):
 
     for f in config.files:
       try:
-        plotter.saveFile(output_prefix, data[f], f)
+        plotter.save_file(output_prefix, data[f], f)
       except:
         raise NameError('!!! Config error !!!')
 
@@ -29,7 +21,13 @@ def start_single_file(config: Config, file_path):
       except:
         raise NameError('!!! Config error !!!')
 
+def get_output_prefix(file_path, output_path):
+    file_name = file_path.split('/')[-1].split('.')[0]
+    #maybe some lib like encode path to avoid this error with /
+    return output_path + '/' + file_name + '/' + file_name
 
-
+def create_output_path(file_path, output_path):
+    file_name = file_path.split('/')[-1].split('.')[0]
+    Path(output_path + '/' + file_name).mkdir(parents=True, exist_ok=True)
     
 

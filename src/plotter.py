@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def saveFile(output_prefix, data, data_name):
+def save_file(output_prefix, data, data_name):
   save_path = output_prefix+'-'+data_name+'.csv'
   np.savetxt(save_path, data, fmt='%s', delimiter=",")
 
@@ -18,9 +18,9 @@ def plot(output_prefix, x, y, name_x, unit_x, name_y, unit_y, xlim = None, ylim 
   plt.xlabel(name_x + ' ['+ unit_x +']')
   plt.ylabel(name_y + ' ['+ unit_y +']')
 
-  savePath = output_prefix+'-plot-'+name_x+'-'+ name_y+'.png'
+  save_path = output_prefix+'-plot-'+name_x+'-'+ name_y+'.png'
 
   fig = plt.gcf()
-  fig.savefig(savePath, dpi=300)
+  fig.savefig(save_path, dpi=300)
   plt.show()
 
