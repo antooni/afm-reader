@@ -5,6 +5,6 @@ def testA():
     filename = '/path/to/source/file.nid'
     config = '/path/to/output'
 
-    result = afm_reader.getOutputPrefix(filename, config)
+    result = afm_reader.get_output_prefix(filename, config)
     
     assert result == '/path/to/output/file/file'

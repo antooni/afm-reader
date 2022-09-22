@@ -1,40 +1,34 @@
-import sys
 from config import Config
 import decoder
 import plotter
 from pathlib import Path
-import argparse
 
-def getOutputPrefix(filePath, configOutputPath):
-    fileName = filePath.split('/')[-1].split('.')[0]
-    Path(configOutputPath + '/' + fileName).mkdir(parents=True, exist_ok=True)
-    return configOutputPath + '/' + fileName + '/' + fileName
+def get_output_prefix(file_path, output_path):
+    file_name = file_path.split('/')[-1].split('.')[0]
+    return output_path + '/' + file_name + '/' + file_name
 
-def run(configPath, filePath):
-    config = Config(configPath)
-    data = decoder.decode(filePath, config)
-    outputPrefix = getOutputPrefix(filePath, config.outputPath) 
+def create_output_path(file_path, output_path):
+    file_name = file_path.split('/')[-1].split('.')[0]
+    Path(output_path + '/' + file_name).mkdir(parents=True, exist_ok=True)
+
+def start_single_file(config: Config, file_path):
+    data = decoder.decode(file_path, config)
+
+    create_output_path(file_path, config.output_path)
+    output_prefix = get_output_prefix(file_path, config.output_path) 
 
     for f in config.files:
       try:
-        plotter.saveFile(outputPrefix, data[f], f)
+        plotter.saveFile(output_prefix, data[f], f)
       except:
         raise NameError('!!! Config error !!!')
 
     for p in config.plots:
       try:
-        plotter.plot(outputPrefix,data[p[0]], data[p[2]], p[0], p[1], p[2], p[3], config.outputPath)
+        plotter.plot(output_prefix,data[p[0]], data[p[2]], p[0], p[1], p[2], p[3])
       except:
         raise NameError('!!! Config error !!!')
 
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        raise NameError('Too little arguments provided')
-
-    configPath = sys.argv[1]
-    filePath = sys.argv[2]
-
-    run(configPath, filePath) 
 
 
     

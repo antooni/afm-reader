@@ -3,7 +3,6 @@ from afm_watchdog import start_watchdog
 from config import Config
 import sys
 
-
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         raise NameError('Too little arguments provided')
@@ -12,7 +11,7 @@ if __name__ == "__main__":
     config = Config(config_path)
 
     if len(sys.argv) == 2:
-        print('🔍 Watch mode | folder: ' + config.sourcePath)
+        print('🔍 Watch mode | folder: ' + config.source_path)
         start_watchdog(config)
 
 
@@ -20,4 +19,3 @@ if __name__ == "__main__":
         file_path = sys.argv[2]
         print('📩 Single run mode | file: ' + file_path)
         start_single_file(config, file_path)
-

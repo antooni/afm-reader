@@ -1,13 +1,15 @@
 from NSFopen.read import read as afmreader
 import numpy as np
+from config import Config
 
-def decodeAFM(path):
+
+def decode_afm(path):
     return afmreader(path, verbose=False).data
 
-def getDataFromDecoded(decoded, dataConfig):
+def get_data_from_decoded(decoded, data_config):
   data = {}
 
-  for key, value in dataConfig.items():
+  for key, value in data_config.items():
     arr = None
     i = 0
     for keys in value:
@@ -23,6 +25,7 @@ def getDataFromDecoded(decoded, dataConfig):
     data[key] = arr  
   return data
 
-def decode(path, config):
-  decoded = decodeAFM(path)
-  return getDataFromDecoded(decoded, config.data)
+def decode(path, config: Config):
+  #validate data with config
+  decoded = decode_afm(path)
+  return get_data_from_decoded(decoded, config.data)
