@@ -18,7 +18,8 @@ def get_data_from_decoded(decoded, data_config):
         if i == 0:
           arr = d
         else:
-          arr = np.concatenate((arr, d), axis=1)
+          flipped = np.fliplr(d)
+          arr = np.concatenate((arr, flipped), axis=1)
       except: 
         raise NameError('!!! Config error !!!')
       i += 1
