@@ -7,8 +7,20 @@ def save_file(output_prefix, data, data_name):
   np.savetxt(save_path, data, fmt='%s', delimiter=",")
 
 def plot(output_prefix, x, y, name_x, unit_x, name_y, unit_y, xlim = None, ylim = None):
+  res = None
+
   for i in range(len(y)):
-      plt.plot(x[i], y[i])
+      if i==0:
+        res = y[i]
+      else:
+        res = np.add(res, y[i])
+  
+  res = np.divide(res, len(y))
+  plt.plot(x[0],res)
+
+  # for i in range(len(y)):
+  #     plt.plot(x[i], y[i])
+      
 
   if xlim != None:
       plt.xlim(xlim)
