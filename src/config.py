@@ -6,6 +6,7 @@ class Config:
     self.source_path: str = config["sourcePath"]
     self.output_path: str = config["outputPath"]
 
+#do not pass multiple channels there, only single
     self.data: Dict[str, list[list[str]]] = config["data"]
     
     self.files: Dict[str, FileConfig] = {}
@@ -15,6 +16,7 @@ class Config:
         raise NameError("!!! Config error !!! / files")
       self.files[key] = FileConfig(value)
 
+#inside plots add option for multiple data channels
     self.plots: Dict[str, PlotConfig] = {}
     for key, value in config["plots"].items():
       if value["x_data"] not in self.data.keys():
