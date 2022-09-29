@@ -1,4 +1,6 @@
 from config import Config
+import pytest
+import copy
 
 CONFIG = {
   "sourcePath": "path/to/source",
@@ -30,7 +32,6 @@ CONFIG = {
   }
 }
 
-
 def test_config():
     config = Config(CONFIG)
 
@@ -59,3 +60,24 @@ def test_config():
     assert config.plots["bias_amplitude"].y_data == "amplitude"
     assert config.plots["bias_amplitude"].y_unit == "pN"
     assert len(config.plots["bias_amplitude"].__dict__) == 4
+
+    
+
+def test_error_handling():
+    with pytest.raises(NameError, match='!!! Config error !!! / files'):
+        wrong_file_data_name = copy.deepcopy(CONFIG)
+        wrong_file_data_name["files"]["bias"]["data_name"] = "non-existing-data"
+        Config(wrong_file_data_name)
+
+    with pytest.raises(NameError, match='!!! Config error !!! / plot x_data'):
+        wrong_plot_x_data = copy.deepcopy(CONFIG)
+        wrong_plot_x_data["plots"]["bias_amplitude"]["x_data"] = "non-existing-data"
+        Config(wrong_plot_x_data)
+
+    with pytest.raises(NameError, match='!!! Config error !!! / plot y_data'):
+        wrong_plot_y_data = copy.deepcopy(CONFIG)
+        wrong_plot_y_data["plots"]["bias_amplitude"]["y_data"] = "non-existing-data"
+        Config(wrong_plot_y_data)
+
+#rethink error naming convention
+
