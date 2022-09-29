@@ -19,3 +19,6 @@ if __name__ == "__main__":
         file_path = sys.argv[2]
         print('📩 Single run mode | file: ' + file_path)
         start_single_file(config, file_path)
+
+# podfolder na każdy plot/pliki
+# wrzucać dane oryginalnei  orgyianlny wyjres

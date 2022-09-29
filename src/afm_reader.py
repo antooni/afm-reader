@@ -3,6 +3,7 @@ import decoder
 import plotter
 from pathlib import Path
 
+#pass only decoded
 def start_single_file(config: Config, file_path):
     data = decoder.decode(file_path, config)
 
