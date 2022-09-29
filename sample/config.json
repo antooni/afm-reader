@@ -9,15 +9,21 @@
     "amplitude": [
       ["Spec", "Backward", "2nd Lock-In Amplitude"],
       ["Spec", "Forward", "2nd Lock-In Amplitude"]
-    ],
-    "phase": [
-      ["Spec", "Backward", "2nd Lock-In Phase"],
-      ["Spec", "Forward", "2nd Lock-In Phase"]
     ]
   },
-  "files": ["bias", "amplitude", "phase"],
-  "plots": [
-    ["bias", "-", "amplitude", "pN"],
-    ["bias", "-", "phase", "deg"]
-  ]
+  "files": {
+    "bias": {
+      "data_name": "bias",
+      "multiplier": "1",
+      "transpose": "True"
+    }
+  },
+  "plots": {
+    "bias_amplitude": {
+      "x_data": "bias",
+      "x_unit": "-",
+      "y_data": "amplitude",
+      "y_unit": "pN"
+    }
+  }
 }

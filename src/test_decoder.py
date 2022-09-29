@@ -27,8 +27,8 @@ def test_optimistic():
       "amplitude": [('Spec', 'Backward', '2nd Lock-In Amplitude'), ('Spec', 'Forward', '2nd Lock-In Amplitude')],
     }
     result = decoder.get_data_from_decoded(decoded, data_config)
-    assert np.array_equal(result["x"], np.array([[1,2,3,4,5,6]]))
-    assert np.array_equal(result["amplitude"], np.array([[6,5,4,3,2,1]]))
+    assert np.array_equal(result["x"], np.array([[1,2,3,6,5,4]]))
+    assert np.array_equal(result["amplitude"], np.array([[6,5,4,1,2,3]]))
 
 def test_pessimistic():
     decoded = {}
