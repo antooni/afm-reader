@@ -30,3 +30,9 @@ class PlotConfig:
     self.x_unit = plot_config["x_unit"]
     self.y_data = plot_config["y_data"]
     self.y_unit = plot_config["y_unit"]
+
+
+def get_config(config_path: str) -> Config:
+  file = open(config_path)
+  config_json = json.load(file)
+  return Config(config_json)
