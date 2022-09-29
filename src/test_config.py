@@ -1,13 +1,41 @@
-from config import Config, FileConfig
-from pathlib import Path
+from config import Config
+
+CONFIG = {
+  "sourcePath": "path/to/source",
+  "outputPath": "path/to/output",
+  "data": {
+    "bias": [
+      ["Spec", "Backward", "Sample_Bias"],
+      ["Spec", "Forward", "Sample_Bias"]
+    ],
+    "amplitude": [
+      ["Spec", "Backward", "2nd Lock-In Amplitude"],
+      ["Spec", "Forward", "2nd Lock-In Amplitude"]
+    ]
+  },
+  "files": {
+    "bias": {
+      "data_name": "bias",
+      "multiplier": "1",
+      "transpose": "True"
+    }
+  },
+  "plots": {
+    "bias_amplitude": {
+      "x_data": "bias",
+      "x_unit": "-",
+      "y_data": "amplitude",
+      "y_unit": "pN"
+    }
+  }
+}
 
 
 def test_config():
-    config_path = Path(__file__).resolve().parents[1].joinpath('sample/config.json')
-    config = Config(config_path)
+    config = Config(CONFIG)
 
-    assert config.source_path == "/home/private/repos/afm-reader/sample"
-    assert config.output_path == "/home/private/repos/afm-reader/results"
+    assert config.source_path == "path/to/source"
+    assert config.output_path == "path/to/output"
 
     assert len(config.data.keys()) == 2
     assert config.data["bias"] == [

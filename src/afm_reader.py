@@ -10,15 +10,15 @@ def start_single_file(config: Config, file_path):
     create_output_path(file_path, config.output_path)
     output_prefix = get_output_prefix(file_path, config.output_path) 
 
-    for f in config.files:
+    for key, file in config.files.items():
       try:
-        plotter.save_file(output_prefix, data[f], f)
+        plotter.save_file(output_prefix, data[key], key)
       except:
         raise NameError('!!! Config error !!!')
 
-    for p in config.plots:
+    for key, plot in config.plots.items():
       try:
-        plotter.plot(output_prefix,data[p[0]], data[p[2]], p[0], p[1], p[2], p[3])
+        plotter.plot(output_prefix,data[plot.x_data], data[plot.y_data], plot.x_data, plot.y_data, plot.x_unit, plot.y_unit)
       except:
         raise NameError('!!! Config error !!!')
 

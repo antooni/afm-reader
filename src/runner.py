@@ -1,3 +1,4 @@
+import json
 from afm_reader import start_single_file
 from afm_watchdog import start_watchdog
 from config import Config
@@ -8,7 +9,9 @@ if __name__ == "__main__":
         raise NameError('Too little arguments provided')
 
     config_path = sys.argv[1]
-    config = Config(config_path)
+    file = open(config_path)
+    config_json = json.load(file)
+    config = Config(config_json)
 
     if len(sys.argv) == 2:
         print('🔍 Watch mode | folder: ' + config.source_path)

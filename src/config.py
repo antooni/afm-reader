@@ -2,9 +2,7 @@ import json
 from typing import Dict
 
 class Config:
-  def __init__(self, config_path):
-    file = open(config_path)
-    config = json.load(file)
+  def __init__(self, config: dict):
     #check config
 
     self.source_path: str = config["sourcePath"]
