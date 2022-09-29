@@ -1,1 +1,2 @@
 NSFopen==1.1.13
+watchdog==2.1.9
