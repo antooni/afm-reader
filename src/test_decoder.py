@@ -14,26 +14,24 @@ def test_optimistic():
         "Spec": {
             "Backward": {
                 "Sample_Bias": [[1,2,3]],
-                "2nd Lock-In Amplitude": [[6,5,4]]
             },
             "Forward": {
-                "Sample_Bias": [[4,5,6]],
                 "2nd Lock-In Amplitude": [[3,2,1]]
             }
         }
     }
     data_config = {
-      "x": [('Spec', 'Backward', 'Sample_Bias'), ('Spec', 'Forward', 'Sample_Bias')],
-      "amplitude": [('Spec', 'Backward', '2nd Lock-In Amplitude'), ('Spec', 'Forward', '2nd Lock-In Amplitude')],
+      "bias_backward": ['Spec', 'Backward', 'Sample_Bias'],
+      "amplitude_forward": ['Spec', 'Forward', '2nd Lock-In Amplitude'],
     }
     result = decoder.get_data_from_decoded(decoded, data_config)
-    assert np.array_equal(result["x"], np.array([[1,2,3,6,5,4]]))
-    assert np.array_equal(result["amplitude"], np.array([[6,5,4,1,2,3]]))
+    assert np.array_equal(result["bias_backward"], np.array([[1,2,3]]))
+    assert np.array_equal(result["amplitude_forward"], np.array([[3,2,1]]))
 
 def test_pessimistic():
     decoded = {}
     data_config = {
-      "x": [('Spec', 'Backward', 'Sample_Bias'), ('Spec', 'Forward', 'Sample_Bias')],
+      "x_forward": ['Spec', 'Forward', 'Sample_Bias'],
     }
 
     with pytest.raises(Exception) as exception:

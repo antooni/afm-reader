@@ -6,14 +6,8 @@ CONFIG = {
   "sourcePath": "path/to/source",
   "outputPath": "path/to/output",
   "data": {
-    "bias": [
-      ["Spec", "Backward", "Sample_Bias"],
-      ["Spec", "Forward", "Sample_Bias"]
-    ],
-    "amplitude": [
-      ["Spec", "Backward", "2nd Lock-In Amplitude"],
-      ["Spec", "Forward", "2nd Lock-In Amplitude"]
-    ]
+    "bias": ["Spec", "Forward", "Sample_Bias"],
+    "amplitude": ["Spec", "Forward", "2nd Lock-In Amplitude"],
   },
   "files": {
     "bias": {
@@ -39,14 +33,9 @@ def test_config():
     assert config.output_path == "path/to/output"
 
     assert len(config.data.keys()) == 2
-    assert config.data["bias"] == [
-      ["Spec", "Backward", "Sample_Bias"],
-      ["Spec", "Forward", "Sample_Bias"]
-    ]
-    assert config.data["amplitude"] == [
-      ["Spec", "Backward", "2nd Lock-In Amplitude"],
-      ["Spec", "Forward", "2nd Lock-In Amplitude"]
-    ]
+    assert config.data["bias"] == ["Spec", "Forward", "Sample_Bias"]
+    assert config.data["amplitude"] == ["Spec", "Forward", "2nd Lock-In Amplitude"]
+    
 
     assert len(config.files.keys()) == 1
     assert config.files["bias"].data_name == "bias"

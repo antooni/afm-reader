@@ -7,7 +7,7 @@ class Config:
     self.output_path: str = config["outputPath"]
 
 #do not pass multiple channels there, only single
-    self.data: Dict[str, list[list[str]]] = config["data"]
+    self.data: Dict[str, list[str]] = config["data"]
     
     self.files: Dict[str, FileConfig] = {}
     for key, value in config["files"].items():

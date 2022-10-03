@@ -10,20 +10,11 @@ def get_data_from_decoded(decoded, data_config):
   data = {}
 
   for key, value in data_config.items():
-    arr = None
-    i = 0
-    for keys in value:
-      try: 
-        d = decoded[keys[0]][keys[1]][keys[2]]
-        if i == 0:
-          arr = d
-        else:
-          flipped = np.fliplr(d)
-          arr = np.concatenate((arr, flipped), axis=1)
-      except: 
+    try: 
+      d = decoded[value[0]][value[1]][value[2]]
+    except: 
         raise NameError('!!! Config error !!!')
-      i += 1
-    data[key] = arr  
+    data[key] = d  
   return data
 
 def decode(path, config: Config):

@@ -6,6 +6,18 @@ def save_file(output_prefix, data, data_name):
   np.savetxt(save_path, data, fmt='%s', delimiter=",")
 
 def plot(output_prefix, x, y, name_x, unit_x, name_y, unit_y, xlim = None, ylim = None):
+
+  # x_data = getData(x)
+  # y_data = getData(y)
+
+  # x_average = getAverage(x_data)
+  # y_average = getAverage(y_data)
+
+  # plot(x_data, y_data)
+  # plot(x_averaged, y_averaged)
+  # save_file(x_data.concat(x_averaged))
+  # save_file(y_data.concat(y_averaged))
+
   res = None
   #test for averaged
   for i in range(len(y)):
