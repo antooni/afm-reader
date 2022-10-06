@@ -12,13 +12,13 @@ def start_single_file(config: Config, file_path):
 
     for key, file in config.files.items():
       try:
-        plotter.save_file(output_prefix, data[key], key)
+        plotter.save_file(output_prefix, data[file.data_name], key)
       except:
         raise NameError('!!! Config error !!!')
 
-    for key, plot in config.plots.items():
+    for key, plot_config in config.plots.items():
       try:
-        plotter.plot(output_prefix,data[plot.x_data], data[plot.y_data], plot.x_data, plot.y_data, plot.x_unit, plot.y_unit)
+        plotter.plot(plot_config, data, output_prefix)
       except:
         raise NameError('!!! Config error !!!')
 
