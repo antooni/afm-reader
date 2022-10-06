@@ -17,8 +17,10 @@
   "plots": {
     "bias_amplitude": {
       "x_data": ["biasBackward", "biasForward"],
+      "x_name": "bias",
       "x_unit": "-",
       "y_data": ["amplitudeBackward", "amplitudeForward"],
+      "y_name": "amplitude",
       "y_unit": "pN"
     }
   }

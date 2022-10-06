@@ -18,16 +18,18 @@ class Config:
 
 class FileConfig:
   def __init__(self, file_config):
-    self.data_name = file_config["data_name"]
-    self.multiplier = int(file_config.get("multiplier", 1))
-    self.transpose = bool(file_config.get("transpose", False))
+    self.data_name: str = file_config["data_name"]
+    self.multiplier: int = int(file_config.get("multiplier", 1))
+    self.transpose: bool = bool(file_config.get("transpose", False))
 
 class PlotConfig: 
   def __init__(self, plot_config):
-    self.x_data = plot_config["x_data"]
-    self.x_unit = plot_config["x_unit"]
-    self.y_data = plot_config["y_data"]
-    self.y_unit = plot_config["y_unit"]
+    self.x_data: list[str] = plot_config["x_data"]
+    self.x_name: str = plot_config["x_name"]
+    self.x_unit: str = plot_config["x_unit"]
+    self.y_data: list[str] = plot_config["y_data"]
+    self.y_name: str = plot_config["y_name"]
+    self.y_unit: str = plot_config["y_unit"]
 
 
 def get_config(config_path: str) -> Config:

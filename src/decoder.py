@@ -12,7 +12,7 @@ def get_data_from_decoded(decoded, data_config) -> Dict[str, np.ndarray]:
 
   for key, value in data_config.items():
     try: 
-      d = decoded[value[0]][value[1]][value[2]]
+      d: np.ndarray = decoded[value[0]][value[1]][value[2]]
     except: 
         raise NameError('!!! Config error !!!')
     data[key] = d  

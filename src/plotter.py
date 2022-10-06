@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Dict
 import matplotlib.pyplot as plt
 import numpy as np
@@ -5,7 +6,7 @@ import numpy as np
 from config import PlotConfig
 
 def save_file(output_prefix, data: np.ndarray, data_name):
-  save_path = output_prefix+'-'+data_name+'.csv'
+  save_path = output_prefix+data_name+'.csv'
   np.savetxt(save_path, data, fmt='%s', delimiter=",")
 
 def get_data(labels: list[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
@@ -30,7 +31,7 @@ def plot_atomic(x: np.ndarray,y: np.ndarray,name_x, unit_x, name_y, unit_y, outp
   plt.xlabel(name_x + ' ['+ unit_x +']')
   plt.ylabel(name_y + ' ['+ unit_y +']')
 
-  save_path = output_prefix+'-plot-'+name_x+'-'+ name_y+'.png'
+  save_path = output_prefix+'plot-'+name_x+'-'+ name_y+'.png'
 
   if len(x.shape) == 1:
     plt.plot(x, y)
@@ -45,18 +46,19 @@ def plot_atomic(x: np.ndarray,y: np.ndarray,name_x, unit_x, name_y, unit_y, outp
 
 def plot(plot_config: PlotConfig, data: Dict[str, np.ndarray], output_prefix: str):
 
+  output_prefix2 = output_prefix + '/plot-' + plot_config.x_name + '-' + plot_config.y_name + '/'
+  Path(output_prefix2).mkdir(parents=True, exist_ok=True)
+
   x_data = get_data(plot_config.x_data, data)
   y_data = get_data(plot_config.y_data, data)
 
   x_average = get_average(x_data)
   y_average = get_average(y_data)
 
-  plot_atomic(x_data, y_data, "X", plot_config.x_unit, "Y", plot_config.y_unit, output_prefix)
-  plot_atomic(x_average, y_average, "X-average", plot_config.x_unit, "Y-average", plot_config.y_unit, output_prefix)
-  print(x_data)
-  print(x_average)
-  save_file(output_prefix,x_data, "X")
-  save_file(output_prefix,x_average, "X-average")
-  save_file(output_prefix,y_data, "Y")
-  save_file(output_prefix,y_average, "Y-average")
+  plot_atomic(x_data, y_data, plot_config.x_name, plot_config.x_unit, plot_config.y_name, plot_config.y_unit, output_prefix2)
+  plot_atomic(x_average, y_average, plot_config.x_name+"-average", plot_config.x_unit, plot_config.y_name+"-average", plot_config.y_unit, output_prefix2)
+  save_file(output_prefix2,x_data, plot_config.x_name)
+  save_file(output_prefix2,x_average, plot_config.x_name + "-average")
+  save_file(output_prefix2,y_data, plot_config.y_name)
+  save_file(output_prefix2,y_average, plot_config.y_name + "-average")
 
