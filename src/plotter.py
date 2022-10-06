@@ -51,6 +51,10 @@ def plot(plot_config: PlotConfig, data, output_prefix: str):
 
   plot_atomic(x_data, y_data, "X", plot_config.x_unit, "Y", plot_config.y_unit, output_prefix)
   plot_atomic(x_average, y_average, "X-average", plot_config.x_unit, "Y-average", plot_config.y_unit, output_prefix)
-  # save_file(np.concatenate(x_data, x_average))
-  # save_file(np.concatenate(y_data, y_average))
+  print(x_data)
+  print(x_average)
+  save_file(output_prefix,x_data, "X")
+  save_file(output_prefix,x_average, "X-average")
+  save_file(output_prefix,y_data, "Y")
+  save_file(output_prefix,y_average, "Y-average")
 
