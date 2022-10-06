@@ -1,14 +1,38 @@
 import json
+from typing import Dict
 
 class Config:
-  def __init__(self, config_file):
-    file = open(config_file)
-    config = json.load(file)
-    #check config
-    #cehck if folder path ends with /
+  def __init__(self, config: dict):
+    self.source_path: str = config["sourcePath"]
+    self.output_path: str = config["outputPath"]
 
-    self.source_path = config["sourcePath"]
-    self.output_path = config["outputPath"]
-    self.data = config["data"]
-    self.files = config["files"]
-    self.plots = config["plots"]
+    self.data: Dict[str, list[str]] = config["data"]
+    
+    self.files: Dict[str, FileConfig] = {}
+    for key, value in config["files"].items():
+      self.files[key] = FileConfig(value)
+
+    self.plots: Dict[str, PlotConfig] = {}
+    for key, value in config["plots"].items():
+      self.plots[key] = PlotConfig(value)
+
+class FileConfig:
+  def __init__(self, file_config):
+    self.data_name: str = file_config["data_name"]
+    self.multiplier: int = int(file_config.get("multiplier", 1))
+    self.transpose: bool = bool(file_config.get("transpose", False))
+
+class PlotConfig: 
+  def __init__(self, plot_config):
+    self.x_data: list[str] = plot_config["x_data"]
+    self.x_name: str = plot_config["x_name"]
+    self.x_unit: str = plot_config["x_unit"]
+    self.y_data: list[str] = plot_config["y_data"]
+    self.y_name: str = plot_config["y_name"]
+    self.y_unit: str = plot_config["y_unit"]
+
+
+def get_config(config_path: str) -> Config:
+  file = open(config_path)
+  config_json = json.load(file)
+  return Config(config_json)

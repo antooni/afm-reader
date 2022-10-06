@@ -9,23 +9,24 @@ def start_single_file(config: Config, file_path):
 
     create_output_path(file_path, config.output_path)
     output_prefix = get_output_prefix(file_path, config.output_path) 
+    print(output_prefix)
 
-    for f in config.files:
+    for key, file in config.files.items():
       try:
-        plotter.save_file(output_prefix, data[f], f)
+        plotter.save_file(output_prefix, data[file.data_name], file.data_name)
       except:
         raise NameError('!!! Config error !!!')
 
-    for p in config.plots:
+    for key, plot_config in config.plots.items():
       try:
-        plotter.plot(output_prefix,data[p[0]], data[p[2]], p[0], p[1], p[2], p[3])
+        plotter.plot(plot_config, data, output_prefix)
       except:
         raise NameError('!!! Config error !!!')
 
 def get_output_prefix(file_path, output_path):
     file_name = file_path.split('/')[-1].split('.')[0]
     #maybe some lib like encode path to avoid this error with /
-    return output_path + '/' + file_name + '/' + file_name
+    return output_path + '/' + file_name + '/'
 
 def create_output_path(file_path, output_path):
     file_name = file_path.split('/')[-1].split('.')[0]
