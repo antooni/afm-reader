@@ -1,14 +1,5 @@
-import os
-import numpy as np
 import numpy as np
 import matplotlib.pyplot as plt
-
-from config import PlotConfig
-from path_creator import PathCreator
-
-def save_csv(name: str, data):
-  np.savetxt(name +'.csv', data, fmt='%s', delimiter=",")
-
 
 def get_data(labels: list[str],  data: dict[str, np.ndarray]) -> np.ndarray:
   d: np.ndarray = np.array([])
@@ -32,7 +23,6 @@ def plot(x: np.ndarray,y: np.ndarray,name_x, unit_x, name_y, unit_y, output_pref
   plt.xlabel(name_x + ' ['+ unit_x +']')
   plt.ylabel(name_y + ' ['+ unit_y +']')
 
-  save_path = os.path.join(output_prefix,'plot-'+name_x+'-'+ name_y+'.png')
 
   if len(x.shape) == 1:
     plt.plot(x, y)
@@ -41,7 +31,8 @@ def plot(x: np.ndarray,y: np.ndarray,name_x, unit_x, name_y, unit_y, output_pref
       plt.plot(x[i], y[i])
 
   fig = plt.gcf()
-  fig.savefig(save_path, dpi=300)
-  plt.show()
+  return fig
+
+
 
 
