@@ -23,7 +23,6 @@ def start_watchdog(config: Config):
     files = os.listdir(config.source_path)
 
     for file in files:
-    # check only text files
         if file.endswith('.nid'):
             start_single_file(config,os.path.join(config.source_path, file))            
 

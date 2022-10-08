@@ -1,21 +1,22 @@
 from config import Config
 import decoder
-from file_generator import FileGenerator
+from file_generator import file_all
 from path_creator import PathCreator
-from plot_generator import PlotGenerator
+from plot_generator import plot_all
 
 #pass only decoded
 def start_single_file(config: Config, file_path):
+    # get data
+    # we leave it as dict for easier mock
     data = decoder.decode(file_path, config)
 
     # initialize
+    # I have PathCreator because it can be easily mocked
     path_creator = PathCreator(file_path, config.output_path)
-    file_generator = FileGenerator(path_creator, config.files, data)
-    plot_generator = PlotGenerator(path_creator, config.plots, data)
     
     # run
-    file_generator.generate_all()
-    plot_generator.generate_all()
+    file_all(config.files, data, path_creator) 
+    plot_all(config.plots, data, path_creator)
 
 
 
