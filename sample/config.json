@@ -1,25 +1,25 @@
 {
-  "sourcePath": "/home/private/repos/afm-reader/sample",
-  "outputPath": "/home/private/repos/afm-reader/results",
+  "source_path": "/home/private/repos/afm-reader/sample",
+  "output_path": "/home/private/repos/afm-reader/results",
   "data": {
-    "biasBackward": ["Spec", "Backward", "Sample_Bias"],
-    "biasForward": ["Spec", "Forward", "Sample_Bias"],
-    "amplitudeBackward": ["Spec", "Backward", "2nd Lock-In Amplitude"],
-    "amplitudeForward": ["Spec", "Forward", "2nd Lock-In Amplitude"]
+    "bias_backward": ["Spec", "Backward", "Sample_Bias"],
+    "bias_forward": ["Spec", "Forward", "Sample_Bias"],
+    "amplitude_backward": ["Spec", "Backward", "2nd Lock-In Amplitude"],
+    "amplitude_forward": ["Spec", "Forward", "2nd Lock-In Amplitude"]
   },
   "files": {
     "bias": {
-      "data_name": "biasBackward",
+      "data_key": "bias_backward",
       "multiplier": "2",
       "transpose": "True"
     }
   },
   "plots": {
     "bias_amplitude": {
-      "x_data": ["biasBackward", "biasForward"],
+      "x_data": ["bias_backward", "bias_forward"],
       "x_name": "bias",
       "x_unit": "-",
-      "y_data": ["amplitudeBackward", "amplitudeForward"],
+      "y_data": ["amplitude_backward", "amplitude_forward"],
       "y_name": "amplitude",
       "y_unit": "pN"
     }

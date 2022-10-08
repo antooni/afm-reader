@@ -5,6 +5,8 @@ from config import Config
 
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
+
+import glob
  
    
 def created(event, config: Config):
@@ -18,8 +20,15 @@ def created(event, config: Config):
 
 
 def start_watchdog(config: Config):
+    files = os.listdir(config.source_path)
+
+    for file in files:
+    # check only text files
+        if file.endswith('.nid'):
+            start_single_file(config,os.path.join(config.source_path, file))            
+
     #get only .nid
-    patterns = ["*"]
+    patterns = ["*.nid"]
     ignore_patterns = None
     ignore_directories = True
     case_sensitive = True

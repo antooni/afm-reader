@@ -7,7 +7,7 @@ from pathlib import Path
 def test_decoding():
     file_path = Path(__file__).resolve().parents[1].joinpath('sample/sample.nid')
     data = decoder.decode_afm(file_path)
-    assert len(data) == 32
+    assert len(data) == 32  # type: ignore
 
 def test_optimistic():
     decoded = {

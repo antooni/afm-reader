@@ -38,7 +38,7 @@ def test_config():
     
 
     assert len(config.files.keys()) == 1
-    assert config.files["bias"].data_name == "bias"
+    assert config.files["bias"].data_key == "bias"
     assert config.files["bias"].multiplier == 1
     assert config.files["bias"].transpose == True
     assert len(config.files["bias"].__dict__) == 3

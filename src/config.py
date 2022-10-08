@@ -3,8 +3,8 @@ from typing import Dict
 
 class Config:
   def __init__(self, config: dict):
-    self.source_path: str = config["sourcePath"]
-    self.output_path: str = config["outputPath"]
+    self.source_path: str = config["source_path"]
+    self.output_path: str = config["output_path"]
 
     self.data: Dict[str, list[str]] = config["data"]
     
@@ -18,7 +18,7 @@ class Config:
 
 class FileConfig:
   def __init__(self, file_config):
-    self.data_name: str = file_config["data_name"]
+    self.data_key: str = file_config["data_key"]
     self.multiplier: int = int(file_config.get("multiplier", 1))
     self.transpose: bool = bool(file_config.get("transpose", False))
 
