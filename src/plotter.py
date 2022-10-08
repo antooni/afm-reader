@@ -3,11 +3,26 @@ from typing import Dict
 import matplotlib.pyplot as plt
 import numpy as np
 
-from config import PlotConfig
+from config import FileConfig, PlotConfig
 
-def save_file(output_prefix, data: np.ndarray, data_name):
-  save_path = output_prefix+data_name+'.csv'
-  np.savetxt(save_path, data, fmt='%s', delimiter=",")
+def save_atomic(output_prefix, data, name):
+  np.savetxt(output_prefix + name +'.csv', data, fmt='%s', delimiter=",")
+
+def save_file(output_prefix, data: np.ndarray, file_config: FileConfig):
+  save_path = output_prefix+ '/file-'+file_config.data_name + '/' 
+  Path(save_path).mkdir(parents=True, exist_ok=True)
+
+  if file_config.multiplier != 1:
+    multiplied = np.multiply(data, file_config.multiplier)
+    save_atomic(save_path, multiplied, file_config.data_name + '-multiplied')
+    # np.savetxt(save_path + file_config.data_name +'-multiplied.csv', multiplied, fmt='%s', delimiter=",")
+
+  if file_config.transpose == True:
+    transposed = np.transpose(data)
+    save_atomic(save_path, transposed, file_config.data_name + '-transposed')
+    # np.savetxt(save_path + file_config.data_name +'-transposed.csv', transposed, fmt='%s', delimiter=",")
+
+  np.savetxt(save_path + file_config.data_name +'.csv', data, fmt='%s', delimiter=",")
 
 def get_data(labels: list[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
   d: np.ndarray = np.array([])
@@ -57,8 +72,8 @@ def plot(plot_config: PlotConfig, data: Dict[str, np.ndarray], output_prefix: st
 
   plot_atomic(x_data, y_data, plot_config.x_name, plot_config.x_unit, plot_config.y_name, plot_config.y_unit, output_prefix2)
   plot_atomic(x_average, y_average, plot_config.x_name+"-average", plot_config.x_unit, plot_config.y_name+"-average", plot_config.y_unit, output_prefix2)
-  save_file(output_prefix2,x_data, plot_config.x_name)
-  save_file(output_prefix2,x_average, plot_config.x_name + "-average")
-  save_file(output_prefix2,y_data, plot_config.y_name)
-  save_file(output_prefix2,y_average, plot_config.y_name + "-average")
+  save_atomic(output_prefix2,x_data, plot_config.x_name)
+  save_atomic(output_prefix2,x_average, plot_config.x_name + "-average")
+  save_atomic(output_prefix2,y_data, plot_config.y_name)
+  save_atomic(output_prefix2,y_average, plot_config.y_name + "-average")
 

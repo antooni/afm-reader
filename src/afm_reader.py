@@ -13,7 +13,7 @@ def start_single_file(config: Config, file_path):
 
     for key, file in config.files.items():
       try:
-        plotter.save_file(output_prefix, data[file.data_name], file.data_name)
+        plotter.save_file(output_prefix, data[file.data_name], file)
       except:
         raise NameError('!!! Config error !!!')
 

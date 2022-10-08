@@ -10,7 +10,7 @@
   "files": {
     "bias": {
       "data_name": "biasBackward",
-      "multiplier": "1",
+      "multiplier": "2",
       "transpose": "True"
     }
   },
