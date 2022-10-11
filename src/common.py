@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import List, Dict
 
+from config import PlotConfig
+
 
 def get_data(labels: List[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
   d: np.ndarray = np.array([])
@@ -20,9 +22,15 @@ def get_data(labels: List[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
 def get_average(data: np.ndarray) -> np.ndarray:
   return np.mean(data, axis=0)
 
-def plot(x: np.ndarray,y: np.ndarray,name_x, unit_x, name_y, unit_y, output_prefix):
-  plt.xlabel(name_x + ' ['+ unit_x +']')
-  plt.ylabel(name_y + ' ['+ unit_y +']')
+def plot(x:np.ndarray, y: np.ndarray, plot_config: PlotConfig):
+  plt.xlabel(plot_config.x_name + ' ['+ plot_config.x_unit +']')
+  plt.ylabel(plot_config.y_name + ' ['+ plot_config.y_unit +']')
+
+  if plot_config.x_lim != None:
+    plt.xlim(plot_config.x_lim[0], plot_config.x_lim[1])
+
+  if plot_config.y_lim != None:
+    plt.ylim(plot_config.y_lim[0], plot_config.y_lim[1])
 
 
   if len(x.shape) == 1:

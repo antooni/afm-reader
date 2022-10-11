@@ -10,7 +10,7 @@
   "files": {
     "bias": {
       "data_key": "bias_backward",
-      "multiplier": "2",
+      "multiplier": 2,
       "transpose": "True"
     }
   },
@@ -19,9 +19,13 @@
       "x_data": ["bias_backward", "bias_forward"],
       "x_name": "bias",
       "x_unit": "-",
+      "x_multiplier": 1,
+      "x_lim": [-40,40],
       "y_data": ["amplitude_backward", "amplitude_forward"],
       "y_name": "amplitude",
-      "y_unit": "pN"
+      "y_unit": "pN",
+      "y_multiplier": 1,
+      "y_lim": [0,0.006]
     }
   }
 }
