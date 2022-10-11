@@ -13,3 +13,5 @@ if __name__ == "__main__":
     print(d)
 
 
+# name of the file is a key
+# rework plot config

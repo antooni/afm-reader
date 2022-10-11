@@ -3,8 +3,9 @@ import os
 from config import FileConfig
 from iowrapper import IOWrapper
 import numpy as np
+from typing import Dict
 
-def file_all(config: dict[str, FileConfig], data, iowrapper: IOWrapper):
+def file_all(config: Dict[str, FileConfig], data, iowrapper: IOWrapper):
     for _, file in config.items():
         try:
             save_file(data[file.data_key], file, iowrapper)

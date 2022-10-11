@@ -1,7 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import List, Dict
 
-def get_data(labels: list[str],  data: dict[str, np.ndarray]) -> np.ndarray:
+
+def get_data(labels: List[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
   d: np.ndarray = np.array([])
   i: int = 0
   

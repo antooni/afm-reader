@@ -1,12 +1,12 @@
 import json
-from typing import Dict
+from typing import Dict, List
 
 class Config:
   def __init__(self, config: dict):
     self.source_path: str = config["source_path"]
     self.output_path: str = config["output_path"]
 
-    self.data: Dict[str, list[str]] = config["data"]
+    self.data: Dict[str, List[str]] = config["data"]
     
     self.files: Dict[str, FileConfig] = {}
     for key, value in config["files"].items():
@@ -24,10 +24,10 @@ class FileConfig:
 
 class PlotConfig: 
   def __init__(self, plot_config):
-    self.x_data: list[str] = plot_config["x_data"]
+    self.x_data: List[str] = plot_config["x_data"]
     self.x_name: str = plot_config["x_name"]
     self.x_unit: str = plot_config["x_unit"]
-    self.y_data: list[str] = plot_config["y_data"]
+    self.y_data: List[str] = plot_config["y_data"]
     self.y_name: str = plot_config["y_name"]
     self.y_unit: str = plot_config["y_unit"]
 
