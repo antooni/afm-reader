@@ -17,5 +17,7 @@ def start_single_file(config: Config, file_path):
     file_all(config.files, data, iowrapper) 
     plot_all(config.plots, data, iowrapper)
 
+    print('🎉 finished processing ' + file_path)
+
 
 
