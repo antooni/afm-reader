@@ -23,13 +23,14 @@ def plot_and_save( plot_config: PlotConfig, data: Dict[str, np.ndarray], iowrapp
     x_average = get_average(x_data)
     y_average = get_average(y_data)
 
+    save_path = os.path.join(path,plot_config.x_name+'-'+ plot_config.y_name+'.png')
     p = plot(x_data, y_data, plot_config.x_name, plot_config.x_unit, plot_config.y_name, plot_config.y_unit, path)
-    pp = plot(x_average, y_average, plot_config.x_name+"-average", plot_config.x_unit, plot_config.y_name+"-average", plot_config.y_unit, path)
-    
-    save_path = os.path.join(path,'plot-'+plot_config.x_name+'-'+ plot_config.y_name+'.png')
-
     iowrapper.save_plot(save_path,p)
-    iowrapper.save_plot(save_path,pp)
+    
+    
+    save_path_avg = os.path.join(path,plot_config.x_name+'-'+ plot_config.y_name+'-average.png')
+    pp = plot(x_average, y_average, plot_config.x_name+"-average", plot_config.x_unit, plot_config.y_name+"-average", plot_config.y_unit, path)
+    iowrapper.save_plot(save_path_avg,pp)
 
     iowrapper.save_csv(os.path.join(path,plot_config.x_name),x_data)
     iowrapper.save_csv(os.path.join(path,plot_config.x_name + "-average") ,x_average )

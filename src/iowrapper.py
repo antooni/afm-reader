@@ -34,5 +34,5 @@ def save_csv(name: str, data):
   np.savetxt(name +'.csv', data, fmt='%s', delimiter=",")
 
 def save_plot(path: str, fig):
-  fig.savefig(path, dpi=300)
   plt.show()
+  fig.savefig(path, dpi=300)

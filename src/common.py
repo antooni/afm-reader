@@ -10,7 +10,6 @@ def get_data(labels: List[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
   for label in labels:
     if i == 0:
       d = data[label]
-      print(type(data[label]))
     else:
       flipped = np.fliplr(data[label])
       d = np.concatenate((d, flipped), axis=1)
