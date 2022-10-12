@@ -1,4 +1,3 @@
-import json
 from afm_reader import start_single_file
 from afm_watchdog import start_watchdog
 from config import Config, get_config

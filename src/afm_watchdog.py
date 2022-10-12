@@ -6,9 +6,6 @@ from config import Config
 from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
 
-import glob
- 
-   
 def created(event, config: Config):
     recent_size = -1
     file_path = event.src_path
