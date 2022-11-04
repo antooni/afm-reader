@@ -1,4 +1,4 @@
-from afm_reader import start_single_file
+from start_single_file import start_single_file
 from afm_watchdog import start_watchdog
 from config import Config, get_config
 import sys
@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     # config is created once during startup,
     # we do not want dynamic config load because:
-    # - there could be a race conditions in watchmode
+    # - there could be race conditions in watchmode
     # - how to even treat config change? rerun all previous? it should not be
     
     # one question : do we want to differentiate outputs based on configs used?

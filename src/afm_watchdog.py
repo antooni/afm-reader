@@ -1,6 +1,6 @@
 import time
 import os
-from afm_reader import start_single_file
+from start_single_file import start_single_file
 from config import Config
 
 from watchdog.observers import Observer
@@ -41,4 +41,6 @@ def start_watchdog(config: Config):
         my_observer.stop()
         my_observer.join()
 
-
+#todo catch config eror to prevent from stopping runtime
+#  && check if the file is supported (mechanical doesnt work)
+# Bash varaible for ssript running 

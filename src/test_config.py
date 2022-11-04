@@ -32,23 +32,23 @@ def test_config():
     assert config.source_path == "path/to/source"
     assert config.output_path == "path/to/output"
 
-    assert len(config.data.keys()) == 2
-    assert config.data["bias"] == ["Spec", "Forward", "Sample_Bias"]
-    assert config.data["amplitude"] == ["Spec", "Forward", "2nd Lock-In Amplitude"]
+    assert len(config.data_config.keys()) == 2
+    assert config.data_config["bias"] == ["Spec", "Forward", "Sample_Bias"]
+    assert config.data_config["amplitude"] == ["Spec", "Forward", "2nd Lock-In Amplitude"]
     
 
-    assert len(config.files.keys()) == 1
-    assert config.files["bias"].data_key == "bias"
-    assert config.files["bias"].multiplier == 1
-    assert config.files["bias"].transpose == True
-    assert len(config.files["bias"].__dict__) == 3
+    assert len(config.files_config.keys()) == 1
+    assert config.files_config["bias"].data_key == "bias"
+    assert config.files_config["bias"].multiplier == 1
+    assert config.files_config["bias"].transpose == True
+    assert len(config.files_config["bias"].__dict__) == 3
 
-    assert len(config.plots.keys()) == 1
-    assert config.plots["bias_amplitude"].x_data == "bias"
-    assert config.plots["bias_amplitude"].x_unit == "-"
-    assert config.plots["bias_amplitude"].y_data == "amplitude"
-    assert config.plots["bias_amplitude"].y_unit == "pN"
-    assert len(config.plots["bias_amplitude"].__dict__) == 4
+    assert len(config.plots_config.keys()) == 1
+    assert config.plots_config["bias_amplitude"].x_data == "bias"
+    assert config.plots_config["bias_amplitude"].x_unit == "-"
+    assert config.plots_config["bias_amplitude"].y_data == "amplitude"
+    assert config.plots_config["bias_amplitude"].y_unit == "pN"
+    assert len(config.plots_config["bias_amplitude"].__dict__) == 4
 
     
 

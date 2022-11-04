@@ -1,4 +1,3 @@
-
 import os
 from config import FileConfig
 from iowrapper import IOWrapper
@@ -22,6 +21,7 @@ def save_file(data: np.ndarray, file_config: FileConfig, file_name: str, iowrapp
     if file_config.transpose == True:
         transposed = np.transpose(data)
         iowrapper.save_csv(path  + '-transposed', transposed)
+
 
     iowrapper.save_csv(path, data)
 

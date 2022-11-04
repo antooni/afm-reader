@@ -21,4 +21,4 @@ def get_data_from_decoded(decoded, data_config) -> Dict[str, np.ndarray]:
 def decode(path, config: Config) -> Dict[str, np.ndarray]:
   #validate data with config
   decoded = decode_afm(path)
-  return get_data_from_decoded(decoded, config.data)
+  return get_data_from_decoded(decoded, config.data_config)

@@ -9,12 +9,12 @@ from typing import Dict
 def plot_all(config: Dict[str, PlotConfig], data, iowrapper: IOWrapper):
     for _, plot_config in config.items():
         try:
-            plot_and_save(plot_config, data, iowrapper)
+            save_plot(plot_config, data, iowrapper)
         except:
             raise NameError('!!! Config error !!!')
 
 
-def plot_and_save( plot_config: PlotConfig, data: Dict[str, np.ndarray], iowrapper: IOWrapper):
+def save_plot( plot_config: PlotConfig, data: Dict[str, np.ndarray], iowrapper: IOWrapper):
     path = iowrapper.get_plot_path(plot_config.x_name + '-' + plot_config.y_name)
 
     x_data = get_data(plot_config.x_data, data)
@@ -42,3 +42,5 @@ def plot_and_save( plot_config: PlotConfig, data: Dict[str, np.ndarray], iowrapp
     iowrapper.save_csv(os.path.join(path,plot_config.x_name + "-average") ,x_average )
     iowrapper.save_csv(os.path.join(path ,plot_config.y_name),y_data)
     iowrapper.save_csv(os.path.join(path , plot_config.y_name + "-average"),y_average)
+
+#refactot save_file and sve_plot to have the same args

@@ -6,15 +6,15 @@ class Config:
     self.source_path: str = config["source_path"]
     self.output_path: str = config["output_path"]
 
-    self.data: Dict[str, List[str]] = config["data"]
+    self.data_config: Dict[str, List[str]] = config["data"]
     
-    self.files: Dict[str, FileConfig] = {}
+    self.files_config: Dict[str, FileConfig] = {}
     for key, value in config["files"].items():
-      self.files[key] = FileConfig(value)
+      self.files_config[key] = FileConfig(value)
 
-    self.plots: Dict[str, PlotConfig] = {}
+    self.plots_config: Dict[str, PlotConfig] = {}
     for key, value in config["plots"].items():
-      self.plots[key] = PlotConfig(value)
+      self.plots_config[key] = PlotConfig(value)
 
 class FileConfig:
   def __init__(self, file_config):
@@ -34,9 +34,6 @@ class PlotConfig:
     self.y_unit: str = plot_config["y_unit"]
     self.y_multiplier: float = float(plot_config.get("y_multiplier", 1))
     self.y_lim: List[float] | None = plot_config.get("y_lim", None)
-
-
-
 
 def get_config(config_path: str) -> Config:
   file = open(config_path)
