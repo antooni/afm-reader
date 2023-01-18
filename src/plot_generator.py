@@ -26,25 +26,25 @@ def save_plot( plot_config: PlotConfig, data: Dict[str, np.ndarray], iowrapper: 
     if plot_config.y_multiplier != 1:
         y_data = np.multiply(y_data, plot_config.y_multiplier)
 
-    x_average = get_average(x_data)
-    y_average = get_average(y_data)
+    # x_average = get_average(x_data)
+    # y_average = get_average(y_data)
 
     save_path = os.path.join(path,plot_config.x_name+'-'+ plot_config.y_name+'.png')
     p = plot(x_data, y_data, plot_config)
     iowrapper.save_plot(save_path,p)
     
     
-    save_path_avg = os.path.join(path,plot_config.x_name+'-'+ plot_config.y_name+'-average.png')
+    # save_path_avg = os.path.join(path,plot_config.x_name+'-'+ plot_config.y_name+'-average.png')
     # Manually override average plot limits
     # TODO: pass it in config
     plot_config.x_lim = None
     plot_config.y_lim = None
-    pp = plot(x_average, y_average, plot_config)
-    iowrapper.save_plot(save_path_avg,pp)
+    # pp = plot(x_average, y_average, plot_config)
+    # iowrapper.save_plot(save_path_avg,pp)
 
     iowrapper.save_csv(os.path.join(path,plot_config.x_name),x_data)
-    iowrapper.save_csv(os.path.join(path,plot_config.x_name + "-average") ,x_average )
+    # iowrapper.save_csv(os.path.join(path,plot_config.x_name + "-average") ,x_average )
     iowrapper.save_csv(os.path.join(path ,plot_config.y_name),y_data)
-    iowrapper.save_csv(os.path.join(path , plot_config.y_name + "-average"),y_average)
+    # iowrapper.save_csv(os.path.join(path , plot_config.y_name + "-average"),y_average)
 
 #refactot save_file and sve_plot to have the same args

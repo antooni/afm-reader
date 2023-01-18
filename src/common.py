@@ -6,18 +6,19 @@ from config import PlotConfig
 
 
 def get_data(labels: List[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
-  d: np.ndarray = np.array([])
-  i: int = 0
+  return data[labels[0]]
+  # d: np.ndarray = np.array([])
+  # i: int = 0
   
-  for label in labels:
-    if i == 0:
-      d = data[label]
-    else:
-      flipped = np.fliplr(data[label])
-      d = np.concatenate((d, flipped), axis=1)
-    i += 1
+  # for label in labels:
+  #   if i == 0:
+  #     d = data[label]
+  #   else:
+  #     flipped = np.fliplr(data[label])
+  #     d = np.concatenate((d, data[label]), axis=1)
+  #   i += 1
   
-  return d
+  # return d
 
 def get_average(data: np.ndarray) -> np.ndarray:
   return np.mean(data, axis=0)
@@ -33,8 +34,8 @@ def plot(x:np.ndarray, y: np.ndarray, plot_config: PlotConfig):
     plt.ylim(plot_config.y_lim[0], plot_config.y_lim[1])
 
 
-  if len(x.shape) == 1:
-    plt.plot(x, y)
+  # if len(x.shape) == 1:
+    # plt.plot(x, y)
   else:
     for i in range(len(y)):
       plt.plot(x[i], y[i])

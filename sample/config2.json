@@ -23,11 +23,11 @@
   },
   "plots": {
     "z_temp": {
-      "x_data": ["ZSens_b", "ZSens_f"],
+      "x_data": ["ZSens_b"],
       "x_name": "Z",
       "x_unit": "um",
       "x_multiplier": 1,
-      "y_data": ["temp_b", "temp_f"],
+      "y_data": ["temp_b"],
       "y_name": "temp",
       "y_unit": "V",
       "y_multiplier": 1
