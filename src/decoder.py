@@ -9,7 +9,9 @@ def decode_afm(path):
 
 def get_data_from_decoded(decoded, data_config) -> Dict[str, np.ndarray]:
   data: Dict[str, np.ndarray] = {}
-
+  print(np.array(decoded['Spec']['Forward']['Z-Axis Sensor']).tolist())
+  # print(decoded['Spec']['Forward']['Z-Axis'])
+  # print(decoded.tolist())
   for key, value in data_config.items():
     try: 
       d: np.ndarray = decoded[value[0]][value[1]][value[2]]

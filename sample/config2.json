@@ -1,0 +1,47 @@
+{
+  "source_path": "/Users/antonipawlak/repos/afm-reader/sample/",
+  "output_path": "/Users/antonipawlak/repos/afm-reader/sample/results",
+  "data": {
+    "ZSens_b": ["Spec", "Backward", "Z-Axis"],
+    "ZSens_f": ["Spec", "Forward", "Z-Axis"],
+    "temp_b": ["Spec", "Backward", "TEMP"],
+    "temp_f": ["Spec", "Forward", "TEMP"],
+    "Deflection_b": ["Spec", "Backward", "Deflection"],
+    "Deflection_f": ["Spec", "Forward", "Deflection"]
+  },
+  "files": {
+    "temp_forward": {
+      "data_key": "temp_f",
+      "multiplier": 1,
+      "transpose": "True"
+    },
+    "Deflection_forward": {
+      "data_key": "Deflection_f",
+      "multiplier": 1,
+      "transpose": "True"
+    }
+  },
+  "plots": {
+    "z_temp": {
+      "x_data": ["ZSens_b", "ZSens_f"],
+      "x_name": "Z",
+      "x_unit": "um",
+      "x_multiplier": 1,
+      "y_data": ["temp_b", "temp_f"],
+      "y_name": "temp",
+      "y_unit": "V",
+      "y_multiplier": 1
+    },
+    "Deflectionvstemp": {
+      "x_data": ["Deflection_f"],
+      "x_name": "Deflection",
+      "x_unit": "um",
+      "x_multiplier": 1,
+      "y_data": ["temp_f"],
+      "y_name": "temp",
+      "y_unit": "V",
+      "y_multiplier": 1
+    }
+  }
+}
+
