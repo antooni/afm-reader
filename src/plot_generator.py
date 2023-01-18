@@ -35,6 +35,10 @@ def save_plot( plot_config: PlotConfig, data: Dict[str, np.ndarray], iowrapper: 
     
     
     save_path_avg = os.path.join(path,plot_config.x_name+'-'+ plot_config.y_name+'-average.png')
+    # Manually override average plot limits
+    # TODO: pass it in config
+    plot_config.x_lim = None
+    plot_config.y_lim = None
     pp = plot(x_average, y_average, plot_config)
     iowrapper.save_plot(save_path_avg,pp)
 
