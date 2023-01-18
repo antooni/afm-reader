@@ -13,7 +13,11 @@ def get_data(labels: List[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
     if i == 0:
       d = data[label]
     else:
-      flipped = np.fliplr(data[label])
+      flipped = None
+      if(data[label].ndim == 1):
+        flipped = np.flip(data[label])
+      else:
+        flipped = np.fliplr(data[label])
       d = np.concatenate((d, flipped), axis=1)
     i += 1
   
