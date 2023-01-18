@@ -9,12 +9,14 @@ def decode_afm(path):
 
 def get_data_from_decoded(decoded, data_config) -> Dict[str, np.ndarray]:
   data: Dict[str, np.ndarray] = {}
-  print(np.array(decoded['Spec']['Forward']['Z-Axis Sensor']).tolist())
+  transformed = [x.tolist() for x in decoded['Spec']['Forward']['Z-Axis Sensor']]
+  print(transformed)
   # print(decoded['Spec']['Forward']['Z-Axis'])
   # print(decoded.tolist())
   for key, value in data_config.items():
     try: 
-      d: np.ndarray = decoded[value[0]][value[1]][value[2]]
+      transformed = [x.tolist() for x in decoded[value[0]][value[1]][value[2]]]
+      d: np.ndarray = transformed
     except: 
         raise NameError('!!! Config error !!!')
     data[key] = d  
