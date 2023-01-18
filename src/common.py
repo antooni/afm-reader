@@ -14,7 +14,7 @@ def get_data(labels: List[str],  data: Dict[str, np.ndarray]) -> np.ndarray:
       d = data[label]
     else:
       flipped = None
-      if(if isinstance(data[label], float)):
+      if isinstance(data[label], float):
         flipped = np.array([data[label]])
       else:
         flipped = np.fliplr(data[label])
