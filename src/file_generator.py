@@ -22,6 +22,9 @@ def save_file(data: np.ndarray, file_config: FileConfig, file_name: str, iowrapp
         transposed = np.transpose(data)
         iowrapper.save_csv(path  + '-transposed', transposed)
 
+    transposed = np.transpose(data)
+    reversed = np.flipud(transposed)
+    iowrapper.save_csv(path + '-reversed', reversed)
 
     iowrapper.save_csv(path, data)
 
